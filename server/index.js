@@ -50,6 +50,22 @@ app.get("/photos/:id", async (req, res) => {
   } catch (err) {
       console.error(err.message);
   }
-})
+});
+
+//update
+app.put("/photos/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, url } = req.body;
+    const updatephoto = await pool.query(`
+          UPDATE photos
+          SET title = $1 url = $2
+          WHERE id = $3
+    `[title, url, id])
+    res.json("Photo was updated!");
+  } catch (err) {
+      console.error(err.message);
+  }
+});
 
 //delete photos
