@@ -68,4 +68,15 @@ app.put("/photos/:id", async (req, res) => {
   }
 });
 
-//delete photos
+//delete photo
+app.delete("/photos:id", async (req, res) => {
+  try {
+    const deletePhoto = await pool.query(`
+      DELETE FROM photo
+      WHERE id = $1
+    `,[id])
+    res.json("Photo was deleted.");
+  } catch (err) {
+    console.error(err.message);
+  }
+})
