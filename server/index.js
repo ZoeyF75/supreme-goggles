@@ -13,14 +13,17 @@ app.listen(5000, () => {
 })
 
 //add to photos
-app.post("/photos", async(req, res) => {
+app.post("/photos", async (req, res) => {
   try {
     const{ title , url } = req.body;
-    const newImage = await pool.query(`
-      INSERT INTO photos (title, url)
-      VALUES($1, $2)
-      RETURNING *;
-    `, [title, url])
+    await pool.query('SELECT * FROM pg_catalog.pg_tables', function(err, result) {
+      console.log(result);
+    });
+    // const newImage = await pool.query(`
+    //   INSERT INTO photos (title, url)
+    //   VALUES($1, $2)
+    //   RETURNING *;
+    // `, [title, url])
     res.json(newImage.rows[0]);
   } catch (err) {
       console.error(err.message);
@@ -28,7 +31,7 @@ app.post("/photos", async(req, res) => {
 });
 
 //gets all saved photos
-app.get("/photos", (req, res) => {
+app.get("/photos", async (req, res) => {
   try {
     const allPhotos = await pool.query(`
       SELECT * FROM photos;
