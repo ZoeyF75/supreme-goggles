@@ -35,3 +35,5 @@ node index.js
 * Postman for route testing
 * Chrome Dev-tools for front-end
 
+Main Page![main](https://github.com/ZoeyF75/supreme-goggles/blob/master/client/assets/mainPage.png?raw=true)
+Edit Modal Window![edit](https://github.com/ZoeyF75/supreme-goggles/blob/master/client/assets/mainPage.png?raw=true)
