@@ -9,14 +9,14 @@ const EditPhotos = ( { photo }) => {
     try {
       const body = { title, url };
       const response = await fetch(`http://localhost:5000/photos/${photo.id}`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body)
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
         }
       );
       window.location = "/";
     } catch (err) {
-      console.error(err.message);
+        console.error(err.message);
     }
   }
 
@@ -31,35 +31,45 @@ const EditPhotos = ( { photo }) => {
         type="button" 
         className="btn btn-warning"   
         data-toggle="modal" 
-        data-target={`#id${photo.id}`}>
+        data-target={`#id${photo.id}`}
+        onClick={() => set()}
+      >
         Edit
       </button>
 
-      <div className="modal" id={`id${photo.id}`} onClick={() => set()}>
+      <div className="modal" id={`id${photo.id}`}>
         <div className="modal-dialog">
           <div className="modal-content">
 
             <div className="modal-header">
-              <h4 className="modal-title">
-                <input  
-                  className="form-control"
-                  type="text"
-                  value={title}
-                  onChange={e => setTitle(e.target.value)}
-                />
-                <small className="form-text text-muted">Rename picture here</small>
-              </h4>
-              <button type="button" className="close" onClick={() => set()} data-dismiss="modal">&times;</button>
+              <h4 className="modal-title">Edit Photo Details</h4>
+              <button type="button" className="close" data-dismiss="modal">&times;</button>
             </div>
 
             <div className="modal-body">
-              <input 
-                type="text"
-                value={url} 
-                onChange={e => setURL(e.target.value)}
-                className="form-control"
-              />
-              <small className="form-text text-muted">Change image adress here</small>
+              <div className="inputdiv">
+                <article>
+                  <input  
+                    type="text"
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                    className="form-control"
+                  />
+                  <button id="clear" type="button" onClick={() => setTitle("")} className="close">&times;</button>
+                </article>
+                <small className="form-text text-muted text-left">Rename picture here</small>
+              </div>
+              <article>
+                <input 
+                  type="text"
+                  value={url} 
+                  onChange={e => setURL(e.target.value)}
+                  className="form-control"
+                  
+                />
+                <button id="clear" type="button" onClick={() => setURL("")} className="close">&times;</button>
+              </article>
+              <small className="form-text text-muted text-left">Change image adress here</small>
             </div>
 
             <div className="modal-footer">

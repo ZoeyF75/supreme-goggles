@@ -1,3 +1,27 @@
 img {
-  width: 20%;
+  width: 100%;
+}
+
+.alert-danger{
+  margin-bottom: -2em;
+}
+
+.table td {
+  vertical-align: middle;
+  table-layout: fixed; width:500px;
+}
+
+.inputdiv {
+  margin-bottom: 0.5em;
+}
+
+article {
+  display: flex;
+}
+
+#clear {
+  padding-left: 0.3em;
+  padding-right: 0.3em;
+  color: red;
+  outline: none;
 }

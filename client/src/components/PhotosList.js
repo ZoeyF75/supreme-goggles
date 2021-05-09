@@ -37,7 +37,7 @@ const PhotosList = () => {
         <thead>
         <tr>
           <th>Title</th>
-          <th>link</th>
+          <th>Link</th>
           <th>Photo</th>
           <th>Edit</th>
           <th>Delete</th>
@@ -47,7 +47,7 @@ const PhotosList = () => {
         {photos.map(photo => (
            <tr key={photo.id}>
             <td>{photo.title}</td>
-            <td><a>{photo.url}</a></td>
+            <td><a href={photo.url} target="_blank">Image link here</a></td>
             <td><img src={photo.url}></img></td>
             <td>
               <EditPhotos 
