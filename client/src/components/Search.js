@@ -2,7 +2,7 @@ const { Fragment, useState } = require("react")
 
 const Search = () => {
   const [title, setTitle] = useState("");
-  const [url, setURL] = useState("http:sample");
+  const [url, setURL] = useState("https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/bbyoda-1575303784.jpeg?resize=980:*");
 
   const onSubmit = async e => {
    //prevent refresh
@@ -14,6 +14,7 @@ const Search = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       });
+      window.location = "/";
     } catch (err) {
       console.error(err.message);
     }
