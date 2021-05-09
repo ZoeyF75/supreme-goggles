@@ -1,3 +1,4 @@
+import EditPhotos from './EditPhotos';
 const { Fragment, useState, useEffect } = require("react")
 
 const PhotosList = () => {
@@ -18,10 +19,8 @@ const PhotosList = () => {
     getPhotos();
   }, []);
 
-  const deletePhoto = async(id) => {
-    console.log(id);
+  const deletePhoto = async (id) => {
     try {
-      console.log(id);
       const deletePhoto = await fetch(`http://localhost:5000/photos/${id}`, {
         method: "DELETE"
       });
@@ -34,22 +33,31 @@ const PhotosList = () => {
 
   return (
     <Fragment>
-      <table class="table text-center mt-5">
+      <table className="table text-center mt-5">
+        <thead>
         <tr>
           <th>Title</th>
           <th>link</th>
           <th>Photo</th>
+          <th>Edit</th>
+          <th>Delete</th>
         </tr>
-       
+        </thead>
+        <tbody>
         {photos.map(photo => (
            <tr key={photo.id}>
             <td>{photo.title}</td>
             <td><a>{photo.url}</a></td>
             <td><img src={photo.url}></img></td>
-            <td>Edit</td>
-            <button className="btn btn-danger" onClick={() => deletePhoto(photo.id)}>Delete</button>
+            <td>
+              <EditPhotos 
+                photo={photo}
+              />
+            </td>
+            <td><button className="btn btn-danger" onClick={() => deletePhoto(photo.id)}>Delete</button></td>
           </tr>
         ))}
+        </tbody>
       </table>
     </Fragment>
   )
