@@ -19,7 +19,7 @@ const PhotosList = () => {
     getPhotos();
   }, []);
 
-  const deletePhoto = async (id) => {
+  const deletePhoto = async (id) => {    
     try {
       const deletePhoto = await fetch(`http://localhost:5000/photos/${id}`, {
         method: "DELETE"

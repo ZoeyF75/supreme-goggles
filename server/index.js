@@ -16,14 +16,11 @@ app.listen(5000, () => {
 app.post("/photos", async (req, res) => {
   try {
     const{ title , url } = req.body;
-    await pool.query('SELECT * FROM pg_catalog.pg_tables', function(err, result) {
-      console.log(result);
-    });
-    // const newImage = await pool.query(`
-    //   INSERT INTO photos (title, url)
-    //   VALUES($1, $2)
-    //   RETURNING *;
-    // `, [title, url])
+    const newImage = await pool.query(`
+      INSERT INTO photos (title, url)
+      VALUES($1, $2)
+      RETURNING *;
+    `, [title, url])
     res.json(newImage.rows[0]);
   } catch (err) {
       console.error(err.message);
@@ -62,9 +59,10 @@ app.put("/photos/:id", async (req, res) => {
     const { title, url } = req.body;
     const updatephoto = await pool.query(`
           UPDATE photos
-          SET title = $1 url = $2
+          SET title = coalesce($1, title),
+          url = coalesce($2, url)
           WHERE id = $3
-    `[title, url, id])
+    `,[title, url, id])
     res.json("Photo was updated!");
   } catch (err) {
       console.error(err.message);
@@ -72,10 +70,11 @@ app.put("/photos/:id", async (req, res) => {
 });
 
 //delete photo
-app.delete("/photos:id", async (req, res) => {
+app.delete("/photos/:id", async (req, res) => {
+  const { id } = req.params;
   try {
     const deletePhoto = await pool.query(`
-      DELETE FROM photo
+      DELETE FROM photos
       WHERE id = $1
     `,[id])
     res.json("Photo was deleted.");
