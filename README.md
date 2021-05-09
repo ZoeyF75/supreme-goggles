@@ -10,7 +10,8 @@ This installs all dev dependencies
 * ensure you have Postgres installed
 * open psql and create the database using line 1 from database.sql
 * I run Postgres from a virtual machine and ran into a problem with the postgres user; so, I created a new user and gave it access to the database. The following is how I created the database and new user:
-```sudo -u postgres psql
+```
+sudo -u postgres psql
 CREATE DATABASE imagerepository;
 create user shopify with encrypted password challenge;
 grant all privledges on database imagerepository to shopify;
@@ -20,7 +21,8 @@ grant all privledges on database imagerepository to shopify;
 * Run lines 3-8 in database.sql to create the image repository table
 
 ### Ensure that the database is open and start the server
-```\cd server
+```\
+cd server
 node index.js
 ```
 * If the server started correctly, your console should read: "server has started on port 5000"
