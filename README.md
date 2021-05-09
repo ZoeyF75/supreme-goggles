@@ -1,7 +1,7 @@
 # Shopify Backend Internship Challenge
 ## Created with PostgreSQL, Express.js, Node.js, and React
 
-This app is an image repository; it allows one to add save images, edit the saved images, and delete previously saved images.
+This app is an image repository; it allows one to add and save images, edit the saved images, and delete previously saved images.
 
 ### run `npm i` 
 This installs all dev dependencies
