@@ -18,7 +18,7 @@ grant all privledges on database imagerepository to shopify;
 \c imagerepository shopify
 ```
 * Change the user and password in the db.js file if needed
-* Run lines 3-8 in database.sql to create the image repository table
+* Run lines 3-8 in database.sql to create the photos table
 
 ### Ensure that the database is open and start the server
 ```\
